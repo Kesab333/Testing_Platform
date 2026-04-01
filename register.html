@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account - PhysicX</title>
+  <meta name="description" content="Create your PhysicX account, verify your email with OTP, and activate a secure 7-day trial." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="assets/icon/logo.png" />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+  <!-- ═══ UNIVERSAL NAV ═══ -->
+<nav class="site-nav" id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="PhysicX Home">
+      <img src="assets/icon/logo.png"       alt="PhysicX Logo"       style="height:34px;">
+      <span class="nav-logo-text">Physic<span>X</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="gallery/gallery.html">Gallery</a></li>
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="docs/documentation.html">Documentation</a></li>
+      <li><a href="about/about.html">About</a></li>
+      <li><a href="contacts/contact.html">Contact</a></li>
+      <li><a href="index.html#download-section" class="nav-download">Download</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+  <main class="page-shell">
+    <section class="auth-hero">
+      <div class="container auth-shell">
+        <article class="auth-showcase reveal">
+          <span class="page-badge">Secure onboarding</span>
+          <h1 class="page-title">Launch your <span class="accent">PhysicX</span> workspace.</h1>
+          <p class="page-subtitle">
+            Register once, verify a real email with a 6-digit OTP, and unlock a production-grade account flow built for the web today and the installer tomorrow.
+          </p>
+
+          <div class="auth-visual">
+            <div class="auth-orbit">
+              <div class="orbit-ring"></div>
+              <div class="orbit-ring small"></div>
+              <div class="orbit-core"></div>
+              <div class="orbit-node one"></div>
+              <div class="orbit-node two"></div>
+              <div class="orbit-node three"></div>
+              <div class="orbit-node four"></div>
+            </div>
+
+            <div class="auth-mini-grid">
+              <div class="auth-mini-card">
+                <div class="auth-mini-label">Verification</div>
+                <div class="auth-mini-value">OTP</div>
+              </div>
+              <div class="auth-mini-card">
+                <div class="auth-mini-label">Trial window</div>
+                <div class="auth-mini-value">7 Days</div>
+              </div>
+              <div class="auth-mini-card">
+                <div class="auth-mini-label">Security</div>
+                <div class="auth-mini-value">JWT</div>
+              </div>
+            </div>
+
+            <div class="auth-list">
+              <div class="auth-list-item">
+                <div class="auth-list-icon">01</div>
+                <div class="auth-list-copy">
+                  <strong>Real-user verification</strong>
+                  <span>Every account starts with a time-bound email OTP before trial activation.</span>
+                </div>
+              </div>
+              <div class="auth-list-item">
+                <div class="auth-list-icon">02</div>
+                <div class="auth-list-copy">
+                  <strong>Installer-ready identity</strong>
+                  <span>The same account flow can power website access, desktop login, and later device binding.</span>
+                </div>
+              </div>
+              <div class="auth-list-item">
+                <div class="auth-list-icon">03</div>
+                <div class="auth-list-copy">
+                  <strong>Professional-grade trial control</strong>
+                  <span>Trials are created server-side after verification, not trust-based on the client.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="auth-card-panel reveal reveal-delay-1">
+          <div class="auth-card-head">
+            <span class="badge badge-cyan">Registration</span>
+            <h2 class="auth-card-title">Create your account</h2>
+            <p class="auth-card-copy">
+              Use a valid email address. We will send a verification code that expires in 10 minutes.
+            </p>
+          </div>
+
+          <form id="register-form" class="auth-form" novalidate>
+            <div class="field">
+              <label for="register-email">Email</label>
+              <input id="register-email" name="email" type="email" autocomplete="email" placeholder="researcher@domain.com" required />
+            </div>
+
+            <div class="field">
+              <label for="register-password">Password</label>
+              <input id="register-password" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required />
+              <small>Passwords are hashed with bcrypt on the backend.</small>
+            </div>
+
+            <div class="field">
+              <label for="register-confirm-password">Confirm Password</label>
+              <input id="register-confirm-password" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Repeat your password" required />
+            </div>
+
+            <div id="register-message" class="status-message" aria-live="polite"></div>
+
+            <button type="submit" class="btn btn-primary btn-lg auth-submit">Create Account</button>
+          </form>
+
+          <div class="auth-inline">
+            <span>Already verified?</span>
+            <a href="login.html">Go to login</a>
+          </div>
+          <p class="auth-note">
+            This onboarding flow is designed to prevent fake accounts and keep future license management clean.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none; padding-top:0;">
+        <span>&copy; 2026 <span class="mono">PhysicX</span>. Secure access for scientific computing.</span>
+        <span><a href="docs/documentation.html" style="text-decoration:none;">Documentation</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/nav.js"></script>
+</body>
+</html>

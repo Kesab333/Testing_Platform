@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - PhysicX</title>
+  <meta name="description" content="Securely log in to PhysicX and access your account dashboard and license status." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="assets/icon/logo.png" />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+  <!-- ═══ UNIVERSAL NAV ═══ -->
+<nav class="site-nav" id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="PhysicX Home">
+      <img src="assets/icon/logo.png"       alt="PhysicX Logo"       style="height:34px;">
+      <span class="nav-logo-text">Physic<span>X</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="gallery/gallery.html">Gallery</a></li>
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="docs/documentation.html">Documentation</a></li>
+      <li><a href="about/about.html">About</a></li>
+      <li><a href="contacts/contact.html">Contact</a></li>
+      <li><a href="index.html#download-section" class="nav-download">Download</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+  <main class="page-shell">
+    <section class="auth-hero">
+      <div class="container auth-shell">
+        <article class="auth-showcase reveal">
+          <span class="page-badge">Protected session</span>
+          <h1 class="page-title">Welcome back to the <span class="accent">simulation core</span>.</h1>
+          <p class="page-subtitle">
+            Login returns a signed JWT session, checks verification state, and exposes license status for the website today and installer authentication next.
+          </p>
+
+          <div class="auth-list">
+            <div class="auth-list-item">
+              <div class="auth-list-icon">JWT</div>
+              <div class="auth-list-copy">
+                <strong>Secure access tokens</strong>
+                <span>Authenticated sessions use JWT so your frontend can request protected resources safely.</span>
+              </div>
+            </div>
+            <div class="auth-list-item">
+              <div class="auth-list-icon">OTP</div>
+              <div class="auth-list-copy">
+                <strong>Verified accounts only</strong>
+                <span>Login is blocked until the email verification flow completes successfully.</span>
+              </div>
+            </div>
+            <div class="auth-list-item">
+              <div class="auth-list-icon">API</div>
+              <div class="auth-list-copy">
+                <strong>Backend-driven license state</strong>
+                <span>Trial and future paid licenses are tracked server-side instead of trusting the browser.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="auth-card-panel reveal reveal-delay-1">
+          <div class="auth-card-head">
+            <span class="badge badge-green">Authentication</span>
+            <h2 class="auth-card-title">Log in to PhysicX</h2>
+            <p class="auth-card-copy">
+              Use the verified email and password you registered with to enter your dashboard.
+            </p>
+          </div>
+
+          <form id="login-form" class="auth-form" novalidate>
+            <div class="field">
+              <label for="login-email">Email</label>
+              <input id="login-email" name="email" type="email" autocomplete="email" placeholder="researcher@domain.com" required />
+            </div>
+
+            <div class="field">
+              <label for="login-password">Password</label>
+              <input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required />
+            </div>
+
+            <div class="auth-inline">
+              <span>Need help accessing your account?</span>
+              <a href="forgot-password.html">Reset password</a>
+            </div>
+
+            <div id="login-message" class="status-message" aria-live="polite"></div>
+
+            <button type="submit" class="btn btn-primary btn-lg auth-submit">Login</button>
+          </form>
+
+          <p class="auth-footer-copy">
+            No account yet? <a href="register.html">Create one and start your free trial</a>.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none; padding-top:0;">
+        <span>&copy; 2026 <span class="mono">PhysicX</span>. Session security with JWT.</span>
+        <span><a href="forgot-password.html" style="text-decoration:none;">Forgot password?</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/nav.js"></script>
+</body>
+</html>

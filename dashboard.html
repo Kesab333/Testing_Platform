@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - PhysicX</title>
+  <meta name="description" content="View your PhysicX account, license status, and trial details." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="assets/icon/logo.png" />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+  <!-- ═══ UNIVERSAL NAV ═══ -->
+<nav class="site-nav" id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="PhysicX Home">
+      <img src="assets/icon/logo.png"       alt="PhysicX Logo"       style="height:34px;">
+      <span class="nav-logo-text">Physic<span>X</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="gallery/gallery.html">Gallery</a></li>
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="docs/documentation.html">Documentation</a></li>
+      <li><a href="about/about.html">About</a></li>
+      <li><a href="contacts/contact.html">Contact</a></li>
+      <li><a href="index.html#download-section" class="nav-download">Download</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+  <main class="page-shell">
+    <section class="dashboard-shell">
+      <div class="container">
+        <div class="dashboard-hero reveal">
+          <div>
+            <span class="badge badge-blue">Account center</span>
+            <h1>PhysicX dashboard</h1>
+            <p>
+              This dashboard reflects backend-authenticated account state, live trial metadata, and the same identity model intended for future installer sign-in.
+            </p>
+          </div>
+          <div class="dashboard-actions">
+            <a href="pricing.html" class="btn btn-secondary">Upgrade license</a>
+            <a href="../docs/documentation.html" class="btn btn-secondary">Read docs</a>
+            <button type="button" class="btn btn-primary" data-auth-logout>Logout</button>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="dashboard-stack">
+            <article class="dashboard-panel reveal reveal-delay-1">
+              <div class="dashboard-profile">
+                <div id="dashboard-avatar" class="dashboard-avatar">PX</div>
+                <div>
+                  <div class="dashboard-subtle">Authenticated account</div>
+                  <div id="dashboard-email" class="dashboard-email">Loading...</div>
+                </div>
+              </div>
+
+              <div id="dashboard-license-message" class="status-message status-info show" style="margin-top:1rem;">
+                Loading current license state...
+              </div>
+
+              <div class="dashboard-stat-grid">
+                <div class="dashboard-stat">
+                  <label>License Type</label>
+                  <strong id="dashboard-license-type">Loading...</strong>
+                </div>
+                <div class="dashboard-stat">
+                  <label>Status</label>
+                  <strong id="dashboard-license-status">Checking...</strong>
+                </div>
+                <div class="dashboard-stat">
+                  <label>Days Remaining</label>
+                  <strong id="dashboard-days-remaining">Calculating...</strong>
+                </div>
+                <div class="dashboard-stat">
+                  <label>Expiry Date</label>
+                  <strong id="dashboard-expiry">Loading...</strong>
+                </div>
+              </div>
+
+              <div
+                id="dashboard-device-warning"
+                class="status-message status-warning"
+                style="display:none; margin-top:1rem;"
+              ></div>
+            </article>
+
+            <article class="dashboard-panel reveal reveal-delay-2">
+              <div class="dashboard-subtle">Trial progress</div>
+              <div class="dashboard-license-bar" aria-hidden="true">
+                <div id="dashboard-license-fill" class="dashboard-license-fill"></div>
+              </div>
+              <div class="dashboard-checklist" style="margin-top:1rem;">
+                <div class="dashboard-checklist-item">Email verification passed and account is ready for protected API calls.</div>
+                <div class="dashboard-checklist-item">JWT login session is active for dashboard and future installer authentication.</div>
+                <div class="dashboard-checklist-item">License tracking is server-side so trial logic stays trustworthy across devices.</div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="dashboard-stack">
+            <article class="dashboard-panel reveal reveal-delay-1">
+              <div class="dashboard-subtle">Validation state</div>
+              <div class="dashboard-stat-grid" style="margin-top:1rem;">
+                <div class="dashboard-stat">
+                  <label>Email Verification</label>
+                  <strong id="dashboard-verification">Checking...</strong>
+                </div>
+                <div class="dashboard-stat">
+                  <label>Desktop Readiness</label>
+                  <strong id="dashboard-sync-state">Syncing...</strong>
+                </div>
+                <div class="dashboard-stat">
+                  <label>Current Device</label>
+                  <strong id="dashboard-current-device">Loading...</strong>
+                </div>
+                <div class="dashboard-stat">
+                  <label>Device Changes Used</label>
+                  <strong id="dashboard-device-changes-used">Loading...</strong>
+                </div>
+                <div class="dashboard-stat">
+                  <label>Remaining Changes</label>
+                  <strong id="dashboard-remaining-device-changes">Loading...</strong>
+                </div>
+              </div>
+            </article>
+
+            <article class="dashboard-panel reveal reveal-delay-2">
+              <div class="dashboard-subtle">What this account now supports</div>
+              <div class="dashboard-checklist" style="margin-top:1rem;">
+                <div class="dashboard-checklist-item">Trial enforcement for the current web onboarding flow.</div>
+                <div class="dashboard-checklist-item">Protected login for the upcoming PhysicX desktop installer.</div>
+                <div class="dashboard-checklist-item">Paid monthly and yearly upgrades now activate through Razorpay-backed checkout.</div>
+              </div>
+            </article>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none; padding-top:0;">
+        <span>&copy; 2026 <span class="mono">PhysicX</span>. Server-tracked access control.</span>
+        <span><a href="index.html#download-section" style="text-decoration:none;">Download desktop build</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/nav.js"></script>
+</body>
+</html>

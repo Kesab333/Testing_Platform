@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — PhysicX</title>
+  <link rel="icon" type="image/png" href="../assets/icon/logo.png">
+  <link rel="stylesheet" href="../shared.css" />
+  <style>
+    /* ── Contact-page-only overrides ────────────────────────── */
+
+    /* Hero */
+    .contact-hero {
+      padding: 80px 0 56px;
+      text-align: center;
+    }
+    .contact-hero .badge {
+      margin-bottom: 16px;
+    }
+    .contact-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      color: var(--clr-text, #0f172a);
+    }
+    .contact-hero p {
+      max-width: 480px;
+      margin: 0 auto;
+      color: var(--clr-text-muted, #64748b);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* Two-column grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 28px;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Info card */
+    .info-card {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .info-icon {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: 10px;
+      background: var(--clr-accent-soft, rgba(37,99,235,.08));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+    .info-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--clr-accent, #2563eb);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .info-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--clr-text-muted, #64748b);
+      margin-bottom: 3px;
+    }
+    .info-value {
+      font-size: 0.93rem;
+      color: var(--clr-text, #0f172a);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .info-value a {
+      color: var(--clr-accent, #2563eb);
+      text-decoration: none;
+    }
+    .info-value a:hover { text-decoration: underline; }
+
+    /* Response badge inside card */
+    .response-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #16a34a;
+      background: #dcfce7;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-top: 18px;
+    }
+    .response-badge::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #16a34a;
+      display: inline-block;
+    }
+
+    /* Divider inside info card */
+    .info-divider {
+      border: none;
+      border-top: 1px solid var(--clr-border, #e2e8f0);
+      margin: 4px 0;
+    }
+
+    /* Form card */
+    .form-card form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 520px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--clr-text, #0f172a);
+      letter-spacing: 0.01em;
+    }
+    .form-group label .required {
+      color: var(--clr-accent, #2563eb);
+      margin-left: 2px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 10px 13px;
+      border: 1.5px solid var(--clr-border, #e2e8f0);
+      border-radius: 8px;
+      background: var(--clr-bg, #fff);
+      color: var(--clr-text, #0f172a);
+      font-size: 0.9rem;
+      font-family: inherit;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--clr-accent, #2563eb);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+    }
+    .form-group input.error,
+    .form-group select.error,
+    .form-group textarea.error {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239,68,68,.1);
+    }
+    .form-group .field-error {
+      font-size: 0.76rem;
+      color: #ef4444;
+      margin-top: 2px;
+      display: none;
+    }
+    .form-group.show-error .field-error { display: block; }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Submit row */
+    .form-submit-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      min-width: 148px;
+      justify-content: center;
+    }
+    .btn-submit .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    .btn-submit.loading .btn-text { opacity: 0.6; }
+    .btn-submit.loading .spinner { display: block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Status messages */
+    .form-status {
+      display: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      align-items: center;
+      gap: 10px;
+    }
+    .form-status.visible { display: flex; }
+    .form-status.success {
+      background: #f0fdf4;
+      color: #15803d;
+      border: 1px solid #bbf7d0;
+    }
+    .form-status.error {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+    .form-status svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Support section */
+    .support-section {
+      padding: 64px 0;
+    }
+    .support-inner {
+      background: var(--clr-bg-soft, #f8fafc);
+      border: 1px solid var(--clr-border, #e2e8f0);
+      border-radius: 16px;
+      padding: 44px 40px;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      .support-inner { padding: 32px 20px; }
+    }
+    .support-inner h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--clr-text, #0f172a);
+    }
+    .support-inner p {
+      color: var(--clr-text-muted, #64748b);
+      margin-bottom: 28px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    .support-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Card heading */
+    .card-heading {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--clr-text, #0f172a);
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--clr-border, #e2e8f0);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-heading svg {
+      width: 17px;
+      height: 17px;
+      stroke: var(--clr-accent, #2563eb);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* section spacing */
+    .contact-body-section {
+      padding-bottom: 56px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ UNIVERSAL NAV ═══ -->
+<nav class="site-nav" id="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo" aria-label="PhysicX Home">
+      <img src="../assets/icon/logo.png"       alt="PhysicX Logo"       style="height:34px;">
+      <span class="nav-logo-text">Physic<span>X</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../pricing.html">Pricing</a></li>
+      <li><a href="../gallery/gallery.html">Gallery</a></li>
+      <li><a href="../index.html#features">Features</a></li>
+      <li><a href="../docs/documentation.html">Documentation</a></li>
+      <li><a href="../about/about.html">About</a></li>
+      <li><a href="../contacts/contact.html">Contact</a></li>
+      <li><a href="../index.html#download-section" class="nav-download">Download</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+  
+  <!-- ── Universal Navigation (injected by nav.js) ─── -->
+  <div id="nav-root" data-active="contact"></div>
+  <script src="../js/nav.js" defer></script>
+
+  <!-- ── Hero ──────────────────────────────────────── -->
+  <section class="section contact-hero reveal">
+    <div class="container">
+      <span class="badge">Contact</span>
+      <h1>Get in Touch with PhysicX</h1>
+      <p>Have questions, feedback, or collaboration ideas? We'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <!-- ── Main contact grid ─────────────────────────── -->
+  <section class="section contact-body-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Left: Contact Information -->
+        <div class="card reveal reveal-delay-1">
+          <div class="card-heading">
+            <!-- info icon -->
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Contact Information
+          </div>
+
+          <div class="info-card">
+
+            <!-- Email -->
+            <div class="info-item">
+              <div class="info-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div class="info-label">Email</div>
+                <div class="info-value"><a href="mailto:physicx.support@gmail.com">physicx.support@gmail.com</a></div>
+              </div>
+            </div>
+
+            <hr class="info-divider" />
+
+            <!-- GitHub -->
+            <div class="info-item">
+              <div class="info-icon">
+                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </div>
+              <div>
+                <div class="info-label">GitHub</div>
+                <div class="info-value"><a href="https://github.com" target="_blank" rel="noopener">github.com/physicx</a></div>
+              </div>
+            </div>
+
+            <hr class="info-divider" />
+
+            <!-- Project -->
+            <div class="info-item">
+              <div class="info-icon">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              </div>
+              <div>
+                <div class="info-label">Project</div>
+                <div class="info-value">PhysicX — Physics Simulation Platform</div>
+              </div>
+            </div>
+
+            <hr class="info-divider" />
+
+            <!-- Location -->
+            <div class="info-item">
+              <div class="info-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="info-label">Location</div>
+                <div class="info-value">India</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Response time badge -->
+          <div class="response-badge">Typically responds within 24–48 hours</div>
+        </div>
+
+        <!-- Right: Contact Form -->
+        <div class="card reveal reveal-delay-1">
+          <div class="card-heading">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Send a Message
+          </div>
+
+          <!-- Status messages -->
+          <div class="form-status success" id="form-success" role="alert">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>Thank you for contacting PhysicX. We will respond shortly.</span>
+          </div>
+          <div class="form-status error" id="form-error" role="alert">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Something went wrong. Please try again.</span>
+          </div>
+
+          <form id="contact-form" action="https://formspree.io/f/mwvwpkjk" method="POST">
+            
+            <input type="hidden" name="_subject" id="email-subject">
+            <input type="hidden" name="_replyto" id="replyto">
+            
+            <div class="form-row">
+              <!-- Name -->
+              <div class="form-group" id="fg-name">
+                <label for="inp-name">Full Name <span class="required">*</span></label>
+                <input type="text" id="inp-name" name="name" placeholder="Enter your full name" required autocomplete="name" />
+                <span class="field-error">Please enter your name.</span>
+              </div>
+              <!-- Email -->
+              <div class="form-group" id="fg-email">
+                <label for="inp-email">Email Address <span class="required">*</span></label>
+                <input type="email" id="inp-email" name="email" placeholder="Enter your email address" required autocomplete="email" />
+                <span class="field-error">Please enter a valid email.</span>
+              </div>
+            </div>
+
+            <!-- Subject -->
+            <div class="form-group" id="fg-subject">
+              <label for="inp-subject">Subject <span class="required">*</span></label>
+              <select id="inp-subject" name="subject" required>
+                <option value="" disabled selected>Select topic</option>
+                <option value="general">General Inquiry</option>
+                <option value="support">Technical Support</option>
+                <option value="bug">Bug Report</option>
+                <option value="feature">Feature Request</option>
+                <option value="collab">Collaboration</option>
+                <option value="other">Other</option>
+              </select>
+              <span class="field-error">Please select a subject.</span>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group" id="fg-message">
+              <label for="inp-message">Message <span class="required">*</span></label>
+              <textarea id="inp-message" name="message" placeholder="Write your message here…" required rows="5"></textarea>
+              <span class="field-error">Please enter your message.</span>
+            </div>
+
+            <!-- Submit -->
+            <div class="form-submit-row">
+              <button type="submit" class="btn btn-primary btn-submit" id="btn-submit">
+                <span class="btn-text">Send Message</span>
+                <span class="spinner" aria-hidden="true"></span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Support Section ───────────────────────────── -->
+  <section class="support-section reveal">
+    <div class="container">
+      <div class="support-inner">
+        <h2>Need help with PhysicX?</h2>
+        <p>Browse our resources to find quick answers, guides, and troubleshooting steps.</p>
+        <div class="support-links">
+          <a href="../docs/documentation.html" class="btn btn-secondary">📖 Documentation</a>
+          <a href="../docs/documentation.html#troubleshooting" class="btn btn-secondary">🔧 Troubleshooting</a>
+          <a href="../docs/documentation.html#faq" class="btn btn-secondary">❓ FAQ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- ═══════════════════════════════════════════
+       UNIVERSAL FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer style="border-top: 1px solid var(--clr-border); padding: 2rem 0; margin-top: 2rem;">
+    <div class="container" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem;">
+      <p style="margin:0; font-size:0.85rem; color:var(--clr-text-muted, #64748b);">
+        &copy; 2026 PhysicX. All rights reserved.
+      </p>
+      <nav aria-label="Footer links" style="display:flex; gap:1.25rem;">
+        <a href="https://github.com" style="font-size:0.85rem; color:var(--clr-text-muted, #64748b); text-decoration:none;" target="_blank" rel="noopener">GitHub</a>
+        <a href="../docs/documentation.html"          style="font-size:0.85rem; color:var(--clr-text-muted, #64748b); text-decoration:none;">Documentation</a>
+        <a href="../contacts/contact.html"       style="font-size:0.85rem; color:var(--clr-text-muted, #64748b); text-decoration:none;">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- ── Page-specific JS ───────────────────────────── -->
+
+<script>
+const form = document.getElementById('contact-form');
+const success = document.getElementById('form-success');
+const error = document.getElementById('form-error');
+const btn = document.getElementById('btn-submit');
+const btnText = btn.querySelector('.btn-text');
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  // Hide previous messages
+  success.style.display = "none";
+  error.style.display = "none";
+
+  // Get field values
+  const name = document.getElementById('inp-name').value;
+  const email = document.getElementById('inp-email').value;
+  const subject = document.getElementById('inp-subject').value;
+
+  // Set dynamic subject
+  let subjectInput = document.getElementById('email-subject');
+  if (subjectInput) {
+    subjectInput.value = `PhysicX Contact: ${subject} from ${name}`;
+  }
+
+  // Set reply-to email
+  let replyInput = document.getElementById('replyto');
+  if (replyInput) {
+    replyInput.value = email;
+  }
+
+  // Button loading state
+  btn.disabled = true;
+  btnText.textContent = "Sending...";
+
+  try {
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      success.style.display = "flex";
+      form.reset();
+
+      // Reset dropdown properly
+      document.getElementById('inp-subject').selectedIndex = 0;
+    } else {
+      throw new Error();
+    }
+  } catch (err) {
+    error.style.display = "flex";
+  }
+
+  // Reset button
+  btn.disabled = false;
+  btnText.textContent = "Send Message";
+});
+</script>
+<!-- <script src="contact.js" defer></script> -->
+  
+</body>
+</html>

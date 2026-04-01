@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation — PhysicX</title>
+  <link rel="icon" type="image/png" href="../assets/icon/logo.png">
+  <link rel="stylesheet" href="../shared.css" />
+  <link rel="stylesheet" href="documentation.css" />
+</head>
+<body>
+
+<!-- ═══ UNIVERSAL NAV ═══ -->
+<nav class="site-nav" id="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo" aria-label="PhysicX Home">
+      <img src="../assets/icon/logo.png"       alt="PhysicX Logo"       style="height:34px;">
+      <span class="nav-logo-text">Physic<span>X</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../pricing.html">Pricing</a></li>
+      <li><a href="../gallery/gallery.html">Gallery</a></li>
+      <li><a href="../index.html#features">Features</a></li>
+      <li><a href="../docs/documentation.html">Documentation</a></li>
+      <li><a href="../about/about.html">About</a></li>
+      <li><a href="../contacts/contact.html">Contact</a></li>
+      <li><a href="../index.html#download-section" class="nav-download">Download</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+  
+  <!-- Universal Nav (nav.js populates this) -->
+  <div id="nav-placeholder"></div>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section class="section doc-hero reveal">
+    <div class="container">
+      <div class="doc-hero__inner">
+        <div class="doc-hero__label">
+          <span class="badge">Documentation</span>
+        </div>
+        <h1 class="doc-hero__title">PhysicX Documentation</h1>
+        <p class="doc-hero__desc">
+          Learn how to install and use PhysicX —
+          the professional physics simulation platform for students, teachers, and institutions.
+        </p>
+
+        <!-- Search Bar -->
+        <div class="doc-search" role="search">
+          <div class="doc-search__wrap">
+            <svg class="doc-search__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input
+              id="doc-search-input"
+              class="doc-search__input"
+              type="search"
+              placeholder="Search documentation…"
+              aria-label="Search documentation"
+              autocomplete="off"
+            />
+            <kbd class="doc-search__kbd">⌘ K</kbd>
+          </div>
+          <div id="search-results" class="doc-search__results" hidden></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN LAYOUT — SIDEBAR + CONTENT
+  ═══════════════════════════════════════════ -->
+  <div class="container">
+    <div class="doc-layout">
+
+      <!-- ── SIDEBAR ─────────────────────────── -->
+      <aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation navigation">
+
+        <!-- Mobile toggle -->
+        <button class="doc-sidebar__toggle" id="sidebar-toggle" aria-expanded="false"
+                aria-controls="sidebar-nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6"  x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+          <span>On this page</span>
+          <svg class="doc-sidebar__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+
+        <nav id="sidebar-nav" class="doc-sidebar__nav">
+          <ul class="doc-sidebar__list">
+
+            <li class="doc-sidebar__group-label">Overview</li>
+            <li>
+              <a href="#introduction" class="doc-sidebar__link doc-sidebar__link--active"
+                 data-section="introduction">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                Introduction
+              </a>
+            </li>
+            <li>
+              <a href="#system-requirements" class="doc-sidebar__link"
+                 data-section="system-requirements">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                System Requirements
+              </a>
+            </li>
+
+            <li class="doc-sidebar__group-label">Setup</li>
+            <li>
+              <a href="#installation" class="doc-sidebar__link" data-section="installation">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Installation
+              </a>
+            </li>
+            <li>
+              <a href="#getting-started" class="doc-sidebar__link" data-section="getting-started">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Getting Started
+              </a>
+            </li>
+
+            <li class="doc-sidebar__group-label">Modules</li>
+            <li>
+              <a href="#simulations" class="doc-sidebar__link" data-section="simulations">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                  <path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                Simulations
+              </a>
+            </li>
+            <li>
+              <a href="#graph-plotter" class="doc-sidebar__link" data-section="graph-plotter">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Graph Plotter
+              </a>
+            </li>
+            <li>
+              <a href="#scientific-calculator" class="doc-sidebar__link"
+                 data-section="scientific-calculator">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/>
+                  <line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/>
+                  <line x1="8" y1="14" x2="10" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/></svg>
+                Scientific Calculator
+              </a>
+            </li>
+            <li>
+              <a href="#vector-visualization" class="doc-sidebar__link"
+                 data-section="vector-visualization">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/></svg>
+                Vector Visualization
+              </a>
+            </li>
+
+            <li class="doc-sidebar__group-label">Support</li>
+            <li>
+              <a href="#troubleshooting" class="doc-sidebar__link" data-section="troubleshooting">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                Troubleshooting
+              </a>
+            </li>
+            <li>
+              <a href="#faq" class="doc-sidebar__link" data-section="faq">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                FAQ
+              </a>
+            </li>
+            <li>
+              <a href="#api-reference" class="doc-sidebar__link" data-section="api-reference">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/></svg>
+                System Information
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- ── CONTENT AREA ───────────────────── -->
+      <main class="doc-content" id="doc-content">
+
+        <!-- ── INTRODUCTION ── -->
+        <article class="doc-section card reveal" id="introduction" data-doc-section>
+          <div class="doc-section__header">
+            <div class="doc-section__eyebrow">
+              <span class="badge">Overview</span>
+            </div>
+            <h2 class="doc-section__title">Introduction</h2>
+            <p class="doc-section__subtitle">What is PhysicX?</p>
+          </div>
+          <div class="doc-section__body">
+            <p>
+              <strong>PhysicX</strong> is a professional physics simulation platform designed for
+              students, teachers, and educational institutions. It provides an interactive environment for
+              exploring classical mechanics, thermodynamics, electromagnetism, waves, and more —
+              all rendered in real time with high-fidelity visualizations.
+            </p>
+            <p>
+              PhysicX is installed as a secure Windows desktop application and is ready to use
+              immediately after setup — no technical configuration required.
+            </p>
+            <div class="doc-callout doc-callout--info">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span>PhysicX provides a 7-day free trial for new users. After the trial period expires, a valid license is required to continue using the software.</span>
+            </div>
+            <div class="doc-feature-grid">
+              <div class="doc-feature-card">
+                <div class="doc-feature-card__icon">⚛</div>
+                <div class="doc-feature-card__text">
+                  <strong>Real-Time Physics</strong>
+                  <span>Smooth, high-fidelity simulations running at 60 frames per second</span>
+                </div>
+              </div>
+              <div class="doc-feature-card">
+                <div class="doc-feature-card__icon">📚</div>
+                <div class="doc-feature-card__text">
+                  <strong>CBSE Curriculum</strong>
+                  <span>Simulation library aligned to the CBSE Class XI Physics syllabus</span>
+                </div>
+              </div>
+              <div class="doc-feature-card">
+                <div class="doc-feature-card__icon">📊</div>
+                <div class="doc-feature-card__text">
+                  <strong>Live Graphs</strong>
+                  <span>Real-time plots update instantly as you adjust simulation parameters</span>
+                </div>
+              </div>
+              <div class="doc-feature-card">
+                <div class="doc-feature-card__icon">🎨</div>
+                <div class="doc-feature-card__text">
+                  <strong>Theme-Aware</strong>
+                  <span>Full dark and light mode support for comfortable use in any environment</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── SYSTEM REQUIREMENTS ── -->
+        <article class="doc-section card reveal reveal-delay-1" id="system-requirements" data-doc-section>
+          <div class="doc-section__header">
+            <div class="doc-section__eyebrow">
+              <span class="badge">Setup</span>
+            </div>
+            <h2 class="doc-section__title">System Requirements</h2>
+            <p class="doc-section__subtitle">Ensure your system is ready to run PhysicX.</p>
+          </div>
+          <div class="doc-section__body">
+            <div class="doc-req-grid">
+              <div class="doc-req-block doc-req-block--min">
+                <div class="doc-req-block__label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Minimum
+                </div>
+                <ul class="doc-req-list">
+                  <li>
+                    <span class="doc-req-list__key">OS</span>
+                    <span class="doc-req-list__val">Windows 10 (64-bit)</span>
+                  </li>
+                  <li>
+                    <span class="doc-req-list__key">RAM</span>
+                    <span class="doc-req-list__val">4 GB</span>
+                  </li>
+                  <li>
+                    <span class="doc-req-list__key">Storage</span>
+                    <span class="doc-req-list__val">500 MB free space</span>
+                  </li>
+                  <li>
+                    <span class="doc-req-list__key">Graphics</span>
+                    <span class="doc-req-list__val">OpenGL 3.3 support</span>
+                  </li>
+                  <li>
+                    <span class="doc-req-list__key">Display</span>
+                    <span class="doc-req-list__val">1280 × 720</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="doc-req-block doc-req-block--rec">
+                <div class="doc-req-block__label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  Recommended
+                </div>
+                <ul class="doc-req-list">
+                  <li>
+                    <span class="doc-req-list__key">OS</span>
+                    <span class="doc-req-list__val">Windows 11 (64-bit)</span>
+                  </li>
+                  <li>
+                    <span class="doc-req-list__key">RAM</span>
+                    <span class="doc-req-list__val">8 GB or more</span>
+                  </li>
+                  <li>
+                    <span class="doc-req-list__key">Storage</span>
+                    <span class="doc-req-list__val">1 GB free space</span>
+                  </li>
+                  <li>
+                    <span class="doc-req-list__key">Graphics</span>
+                    <span class="doc-req-list__val">Dedicated GPU (NVIDIA/AMD)</span>
+                  </li>
+                  <li>
+                    <span class="doc-req-list__key">Display</span>
+                    <span class="doc-req-list__val">1920 × 1080 or higher</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── INSTALLATION ── -->
+        <article class="doc-section card reveal" id="installation" data-doc-section>
+          <div class="doc-section__header">
+            <div class="doc-section__eyebrow">
+              <span class="badge">Setup</span>
+            </div>
+            <h2 class="doc-section__title">Installation</h2>
+            <p class="doc-section__subtitle">Install PhysicX securely using the official setup installer.</p>
+          </div>
+          <div class="doc-section__body">
+
+            <div class="doc-callout doc-callout--info">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span><strong>Account &amp; Trial Policy:</strong> When a new account is created, a 7-day trial period is automatically activated. The trial begins immediately after account registration. After the trial expires, a valid license is required to continue using the software.</span>
+            </div>
+
+            <div class="doc-callout doc-callout--warning">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <span>
+                <strong>Administrator Permission — IMPORTANT:</strong> Always right-click the setup installer and select <strong>Run as Administrator</strong>. Without administrator privileges, installation or license verification may fail.
+              </span>
+            </div>
+
+            <div class="doc-callout doc-callout--tip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span><strong>Setup Architecture:</strong> The Setup Installer and the Main Software are separate components. Only the official PhysicX Setup Installer can securely download and install the main software, ensuring software integrity and license verification. For security and license protection, a maximum of 5 device login attempts is allowed per account.</span>
+            </div>
+
+            <div class="doc-steps">
+              <div class="doc-step">
+                <div class="doc-step__num">1</div>
+                <div class="doc-step__body">
+                  <h4>Create Your Account</h4>
+                  <p>
+                    Visit the official PhysicX website and create your user account.
+                    A 7-day trial will be activated automatically after account registration.
+                  </p>
+                  <a href="../index.html#download-section" class="btn">Visit PhysicX Website</a>
+                </div>
+              </div>
+
+              <div class="doc-step">
+                <div class="doc-step__num">2</div>
+                <div class="doc-step__body">
+                  <h4>Download the Setup Installer</h4>
+                  <p>
+                    Download the official PhysicX Setup Installer from the website.
+                    Only the setup installer is available for download — the main software will be
+                    installed automatically after login and verification.
+                  </p>
+                  <a href="../index.html#download-section" class="btn">Download Setup Installer</a>
+                </div>
+              </div>
+
+              <div class="doc-step">
+                <div class="doc-step__num">3</div>
+                <div class="doc-step__body">
+                  <h4>Run Setup as Administrator</h4>
+                  <p>
+                    Locate the downloaded setup file. Right-click the setup file and select
+                    <strong>Run as Administrator</strong>. This step is mandatory for a successful installation.
+                  </p>
+                </div>
+              </div>
+
+              <div class="doc-step">
+                <div class="doc-step__num">4</div>
+                <div class="doc-step__body">
+                  <h4>Launch Setup and Login</h4>
+                  <p>
+                    After the setup window opens, enter your account credentials and click
+                    <strong>Login</strong> to proceed.
+                  </p>
+                </div>
+              </div>
+
+              <div class="doc-step">
+                <div class="doc-step__num">5</div>
+                <div class="doc-step__body">
+                  <h4>Accept Terms and Conditions</h4>
+                  <p>
+                    Carefully read the Terms and Conditions. Scroll to the bottom of the page,
+                    check the confirmation checkbox, and click <strong>Continue</strong> to proceed.
+                  </p>
+                </div>
+              </div>
+
+              <div class="doc-step">
+                <div class="doc-step__num">6</div>
+                <div class="doc-step__body">
+                  <h4>License Verification</h4>
+                  <p>
+                    The setup will verify your account and license status. Typical verification
+                    time is <strong>2–3 minutes</strong>. Please wait until the process completes.
+                  </p>
+                </div>
+              </div>
+
+              <div class="doc-step">
+                <div class="doc-step__num">7</div>
+                <div class="doc-step__body">
+                  <h4>Install Main Software</h4>
+                  <p>
+                    After successful verification, click <strong>Install Main Software</strong>.
+                    The system will download and install the main software. Estimated duration is
+                    <strong>2–3 minutes</strong> depending on your internet speed and system performance.
+                  </p>
+                </div>
+              </div>
+
+              <div class="doc-step">
+                <div class="doc-step__num">8</div>
+                <div class="doc-step__body">
+                  <h4>Launch the Software</h4>
+                  <p>
+                    After installation completes, the main software will be ready to use.
+                    Launch PhysicX using the <strong>desktop shortcut</strong> created during
+                    installation and log in with your account credentials.
+                  </p>
+                </div>
+              </div>
+            </div>
+        </article>
+
+        <!-- ── GETTING STARTED ── -->
+        <article class="doc-section card reveal" id="getting-started" data-doc-section>
+          <div class="doc-section__header">
+            <div class="doc-section__eyebrow">
+              <span class="badge">Setup</span>
+            </div>
+            <h2 class="doc-section__title">Getting Started</h2>
+            <p class="doc-section__subtitle">Your first simulation in four steps.</p>
+          </div>
+          <div class="doc-section__body">
+            <ol class="doc-ordered-steps">
+              <li>
+                <strong>Open PhysicX</strong> — open PhysicX using the desktop shortcut created during installation.
+                The main window will appear with the simulation browser.
+              </li>
+              <li>
+                <strong>Select a Physics Domain or Grade</strong> — choose the required Physics Domain or Grade Level
+                from the left panel. Then select a simulation to begin.
+              </li>
+              <li>
+                <strong>Adjust Parameters</strong> — the right-side control panel exposes all
+                simulation parameters (mass, velocity, temperature, etc.) as sliders and input
+                fields. Changes are reflected live on the canvas.
+              </li>
+              <li>
+                <strong>Run the Simulation</strong> — press <kbd>Space</kbd> or click
+                <strong>Run</strong> to start the animation. Use <strong>Reset</strong> to
+                restore initial conditions.
+              </li>
+            </ol>
+
+            <div class="doc-callout doc-callout--tip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span>
+                <strong>Tip:</strong> Use the Graph Plotter tab alongside any simulation to
+                record and export live data plots.
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── SIMULATIONS ── -->
+        <article class="doc-section card reveal" id="simulations" data-doc-section>
+          <div class="doc-section__header">
+            <div class="doc-section__eyebrow">
+              <span class="badge">Modules</span>
+            </div>
+            <h2 class="doc-section__title">Simulations</h2>
+            <p class="doc-section__subtitle">Working with the PhysicX simulation modules.</p>
+          </div>
+          <div class="doc-section__body">
+
+            <h3>Opening a Simulation</h3>
+            <p>
+              Open the simulation browser from the left panel. Select a topic category or Grade Level,
+              then click any simulation card to load it into the main canvas. Each simulation opens
+              instantly with its default parameters ready to use.
+            </p>
+
+            <h3>Adjusting Parameters</h3>
+            <p>
+              Every simulation exposes its key physics parameters — such as mass, velocity, temperature,
+              or frequency — as sliders and input fields in the right-side control panel. Adjust any
+              value and the simulation updates live on the canvas with no restart required.
+            </p>
+
+            <h3>Running a Simulation</h3>
+            <p>
+              Press <kbd>Space</kbd> or click the <strong>Run</strong> button in the simulation toolbar
+              to start the animation. You can pause at any time to examine the current state, then
+              resume from where you left off.
+            </p>
+
+            <h3>Resetting a Simulation</h3>
+            <p>
+              Click the <strong>Reset</strong> button in the simulation toolbar to restore all
+              parameters and state to their original values. This is useful when you want to start
+              a new experiment with fresh initial conditions.
+            </p>
+
+            <div class="doc-module-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Module</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Motion Simulator</td><td>Mechanics</td><td><span class="doc-badge doc-badge--green">Stable</span></td></tr>
+                  <tr><td>Thermal Properties</td><td>Thermodynamics</td><td><span class="doc-badge doc-badge--green">Stable</span></td></tr>
+                  <tr><td>Work / Energy / Power</td><td>Mechanics</td><td><span class="doc-badge doc-badge--green">Stable</span></td></tr>
+                  <tr><td>Kinetic Theory of Gases</td><td>Thermodynamics</td><td><span class="doc-badge doc-badge--green">Stable</span></td></tr>
+                  <tr><td>Waves</td><td>Oscillations</td><td><span class="doc-badge doc-badge--green">Stable</span></td></tr>
+                  <tr><td>Vector Fields</td><td>Electromagnetism</td><td><span class="doc-badge doc-badge--blue">Beta</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- ── GRAPH PLOTTER ── -->
+        <article class="doc-section card reveal" id="graph-plotter" data-doc-section>
+          <div class="doc-section__header">
+            <div class="doc-section__eyebrow">
+              <span class="badge">Modules</span>
+            </div>
+            <h2 class="doc-section__title">Graph Plotter</h2>
+            <p class="doc-section__subtitle">Plot, analyse, and export simulation data.</p>
+          </div>
+          <div class="doc-section__body">
+
+            <h3>Opening the Graph Tool</h3>
+            <p>
+              Open the Graph Plotter from the <strong>Tools</strong> menu or press
+              <kbd>Ctrl</kbd>+<kbd>G</kbd>. The plotter opens in a separate panel alongside
+              your active simulation.
+            </p>
+
+            <h3>Entering an Equation</h3>
+            <p>
+              Type a mathematical expression in the input field at the top of the plotter panel.
+              The calculator supports standard arithmetic, trigonometry, and common physics
+              functions. Press <kbd>Enter</kbd> to plot the equation instantly.
+            </p>
+
+            <h3>Viewing and Adjusting the Graph</h3>
+            <p>
+              Right-click the plot area to access axis settings — set custom min/max ranges,
+              toggle log scale, or enable auto-range. Zoom with the scroll wheel and pan by
+              clicking and dragging. The graph updates live as simulation parameters change.
+            </p>
+
+            <h3>Exporting the Graph</h3>
+            <p>
+              Press <kbd>Ctrl</kbd>+<kbd>E</kbd> or use <strong>File → Export Graph</strong> to
+              save the current plot as PNG, SVG, or CSV data for further analysis or use in
+              reports and assignments.
+            </p>
+          </div>
+        </article>
+
+        <!-- ── SCIENTIFIC CALCULATOR ── -->
+        <article class="doc-section card reveal" id="scientific-calculator" data-doc-section>
+          <div class="doc-section__header">
+            <div class="doc-section__eyebrow">
+              <span class="badge">Modules</span>
+            </div>
+            <h2 class="doc-section__title">Scientific Calculator</h2>
+            <p class="doc-section__subtitle">Evaluate physics expressions with full unit support.</p>
+          </div>
+          <div class="doc-section__body">
+
+            <h3>Opening the Calculator</h3>
+            <p>
+              Click the Calculator icon in the toolbar or press <kbd>Ctrl</kbd>+<kbd>C</kbd> to open
+              the Scientific Calculator. Use it to perform physics calculations alongside your
+              simulations without switching between applications.
+            </p>
+
+            <h3>Entering Values and Equations</h3>
+            <p>
+              Type any physics expression into the input field. The calculator supports standard
+              arithmetic, trigonometry, logarithms, and common physical constants. Press
+              <kbd>Enter</kbd> to evaluate and view the result instantly.
+            </p>
+
+            <h3>Available Operators</h3>
+            <div class="doc-op-grid">
+              <div class="doc-op-chip"><code>+</code> Addition</div>
+              <div class="doc-op-chip"><code>-</code> Subtraction</div>
+              <div class="doc-op-chip"><code>*</code> Multiplication</div>
+              <div class="doc-op-chip"><code>/</code> Division</div>
+              <div class="doc-op-chip"><code>**</code> Power</div>
+              <div class="doc-op-chip"><code>%</code> Modulo</div>
+              <div class="doc-op-chip"><code>sin()</code> Sine</div>
+              <div class="doc-op-chip"><code>cos()</code> Cosine</div>
+              <div class="doc-op-chip"><code>sqrt()</code> Square root</div>
+              <div class="doc-op-chip"><code>log()</code> Natural log</div>
+              <div class="doc-op-chip"><code>pi</code> π constant</div>
+              <div class="doc-op-chip"><code>e</code> Euler's number</div>
+            </div>
+
+            <h3>Viewing Results</h3>
+            <p>
+              Results are displayed immediately below the input field. You can chain calculations
+              by using the previous result as input for the next equation. The calculator
+              history panel keeps a record of recent calculations for easy reference.
+            </p>
+          </div>
+        </article>
+
+        <!-- ── VECTOR VISUALIZATION ── -->
+        <article class="doc-section card reveal" id="vector-visualization" data-doc-section>
+          <div class="doc-section__header">
+            <div class="doc-section__eyebrow">
+              <span class="badge">Modules</span>
+            </div>
+            <h2 class="doc-section__title">Vector Visualization</h2>
+            <p class="doc-section__subtitle">Explore vector fields and directional quantities.</p>
+          </div>
+          <div class="doc-section__body">
+            <h3>Displaying Vector Fields</h3>
+            <p>
+              Open the Vector module from the simulation browser. The canvas renders a 2D grid of
+              arrows representing the vector field. The field updates live as you adjust parameters.
+            </p>
+
+            <h3>Adjusting Magnitude</h3>
+            <p>
+              Use the <strong>Scale</strong> slider in the control panel to normalize arrow lengths.
+              Toggle <strong>Color Map</strong> to encode magnitude as a hue gradient (blue = low,
+              red = high).
+            </p>
+
+            <h3>Changing Direction</h3>
+            <p>
+              Enter custom x and y component values in the field equation inputs in the control panel.
+              The vector field on the canvas updates instantly to reflect your input, allowing you to
+              explore different field configurations interactively.
+            </p>
+          </div>
+        </article>
+
+        <!-- ── TROUBLESHOOTING ── -->
+        <article class="doc-section card reveal" id="troubleshooting" data-doc-section>
+          <div class="doc-section__header">
+            <div class="doc-section__eyebrow">
+              <span class="badge">Support</span>
+            </div>
+            <h2 class="doc-section__title">Troubleshooting</h2>
+            <p class="doc-section__subtitle">Solutions to common issues.</p>
+          </div>
+          <div class="doc-section__body">
+
+            <div class="doc-accordion">
+
+              <details class="doc-accordion__item" open>
+                <summary class="doc-accordion__summary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                  Simulation not loading
+                  <svg class="doc-accordion__chevron" width="14" height="14" viewBox="0 0 24 24"
+                       fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </summary>
+                <div class="doc-accordion__body">
+                  <p>If a simulation does not appear or fails to open, try the following:</p>
+                  <ol>
+                    <li>Restart the PhysicX application using the desktop shortcut.</li>
+                    <li>Check your internet connection — some content may require verification.</li>
+                    <li>Ensure your license is active and has not expired.</li>
+                    <li>If the problem persists, contact PhysicX support with a description of the issue.</li>
+                  </ol>
+                </div>
+              </details>
+
+              <details class="doc-accordion__item">
+                <summary class="doc-accordion__summary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  Application not starting
+                  <svg class="doc-accordion__chevron" width="14" height="14" viewBox="0 0 24 24"
+                       fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </summary>
+                <div class="doc-accordion__body">
+                  <p>If PhysicX does not open after double-clicking the desktop shortcut:</p>
+                  <ol>
+                    <li>Right-click the desktop shortcut and select <strong>Run as Administrator</strong>.</li>
+                    <li>Check your internet connection — license verification requires an active connection.</li>
+                    <li>Verify your login credentials are correct.</li>
+                    <li>Reinstall PhysicX using the official setup installer if the issue continues.</li>
+                    <li>Contact support if the problem persists after reinstalling.</li>
+                  </ol>
+                </div>
+              </details>
+
+              <details class="doc-accordion__item">
+                <summary class="doc-accordion__summary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/>
+                    <line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/>
+                    <line x1="17" y1="7" x2="22" y2="7"/></svg>
+                  Graphics or rendering issues
+                  <svg class="doc-accordion__chevron" width="14" height="14" viewBox="0 0 24 24"
+                       fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </summary>
+                <div class="doc-accordion__body">
+                  <p>If the simulation canvas appears blank or displays incorrectly:</p>
+                  <ol>
+                    <li>Restart the PhysicX application and try opening the simulation again.</li>
+                    <li>Update your GPU drivers to the latest stable release from your manufacturer's website.</li>
+                    <li>Ensure your display resolution meets the minimum requirement (1280 × 720).</li>
+                    <li>Contact PhysicX support if the issue persists after updating your drivers.</li>
+                  </ol>
+                </div>
+              </details>
+
+            </div>
+          </div>
+        </article>
+
+        <!-- ── FAQ ── -->
+        <article class="doc-section card reveal" id="faq" data-doc-section>
+          <div class="doc-section__header">
+            <div class="doc-section__eyebrow">
+              <span class="badge">Support</span>
+            </div>
+            <h2 class="doc-section__title">FAQ</h2>
+            <p class="doc-section__subtitle">Frequently asked questions.</p>
+          </div>
+          <div class="doc-section__body">
+
+            <div class="doc-faq-list">
+
+              <div class="doc-faq-item">
+                <h4 class="doc-faq-q">Does PhysicX offer a free trial?</h4>
+                <p>
+                  Yes. PhysicX provides a 7-day free trial for new users.
+                  After the trial period expires, a valid license is required to continue using the software.
+                </p>
+              </div>
+
+              <div class="doc-faq-item">
+                <h4 class="doc-faq-q">Does PhysicX support macOS or Linux?</h4>
+                <p>
+                  PhysicX is currently developed and tested on Windows 10/11. macOS and Linux
+                  support are not available at this time. macOS support is planned for a future release.
+                </p>
+              </div>
+
+              <div class="doc-faq-item">
+                <h4 class="doc-faq-q">How do I switch between light and dark themes?</h4>
+                <p>
+                  Use <strong>Settings → Appearance → Theme</strong>. The theme change applies
+                  to all open simulations instantly — no restart needed.
+                </p>
+              </div>
+
+              <div class="doc-faq-item">
+                <h4 class="doc-faq-q">What curriculum does PhysicX target?</h4>
+                <p>
+                  The current simulation library covers the CBSE Class XI Physics syllabus.
+                  Class XII modules are in active development and will be released incrementally.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </article>
+
+        <!-- ── SYSTEM INFORMATION ── -->
+        <article class="doc-section card reveal" id="api-reference" data-doc-section>
+          <div class="doc-section__header">
+            <div class="doc-section__eyebrow">
+              <span class="badge">Reference</span>
+            </div>
+            <h2 class="doc-section__title">System Information</h2>
+            <p class="doc-section__subtitle">How PhysicX is installed and managed on your device.</p>
+          </div>
+          <div class="doc-section__body">
+
+            <p>
+              PhysicX is designed to run as a secure desktop application on Windows 10 and Windows 11.
+              All components are automatically installed and configured by the official setup installer.
+              Users do not need to manually configure system files or dependencies.
+            </p>
+
+            <div class="doc-callout doc-callout--info">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span>
+                The setup installer handles all required components automatically. If you encounter
+                any issues after installation, refer to the Troubleshooting section or contact
+                PhysicX support.
+              </span>
+            </div>
+
+            <div class="doc-module-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Component</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Setup Installer</td><td>Official installer for account login, license verification, and software download.</td></tr>
+                  <tr><td>Main Application</td><td>The core PhysicX desktop application, installed automatically after verification.</td></tr>
+                  <tr><td>Simulation Modules</td><td>Pre-installed physics simulation modules aligned to the CBSE Class XI curriculum.</td></tr>
+                  <tr><td>Graph Plotter</td><td>Built-in tool for plotting and exporting mathematical functions and simulation data.</td></tr>
+                  <tr><td>Scientific Calculator</td><td>Built-in calculator for evaluating physics expressions and equations.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- Pagination -->
+        <div class="doc-pagination">
+          <button class="btn doc-pagination__prev" id="doc-prev" disabled>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            Previous
+          </button>
+          <button class="btn doc-pagination__next" id="doc-next">
+            Next
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+<!-- ═══════════════════════════════════════════
+       UNIVERSAL FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer style="border-top: 1px solid var(--clr-border); padding: 2rem 0; margin-top: 2rem;">
+    <div class="container" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem;">
+      <p style="margin:0; font-size:0.85rem; color:var(--clr-text-muted, #64748b);">
+        &copy; 2026 PhysicX. All rights reserved.
+      </p>
+      <nav aria-label="Footer links" style="display:flex; gap:1.25rem;">
+        <a href="https://github.com" style="font-size:0.85rem; color:var(--clr-text-muted, #64748b); text-decoration:none;" target="_blank" rel="noopener">GitHub</a>
+        <a href="../docs/documentation.html"          style="font-size:0.85rem; color:var(--clr-text-muted, #64748b); text-decoration:none;">Documentation</a>
+        <a href="../contacts/contact.html"       style="font-size:0.85rem; color:var(--clr-text-muted, #64748b); text-decoration:none;">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../js/nav.js"></script>
+  <script src="documentation.js"></script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing - PhysicX</title>
+  <meta name="description" content="Choose a PhysicX paid license plan and complete payment securely with Razorpay." />
+  <link rel="icon" type="image/png" href="assets/icon/logo.png" />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="auth.css" />
+  <style>
+    .pricing-shell {
+      padding: 7rem 0 5rem;
+      background:
+        radial-gradient(circle at top, rgba(37, 99, 235, 0.10), transparent 42%),
+        linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    }
+    .pricing-hero {
+      display: grid;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      align-items: end;
+    }
+    .pricing-hero h1 {
+      margin: 0;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1.05;
+    }
+    .pricing-hero p {
+      margin: 0;
+      max-width: 720px;
+      color: var(--clr-text-3);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .pricing-account {
+      display: inline-flex;
+      gap: 0.6rem;
+      align-items: center;
+      padding: 0.65rem 1rem;
+      border: 1px solid var(--clr-border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: var(--shadow-xs);
+      color: var(--clr-text-3);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .pricing-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.6rem;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+    }
+    .pricing-card.featured {
+      border-color: rgba(37, 99, 235, 0.35);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .pricing-price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.35rem;
+    }
+    .pricing-price strong {
+      font-size: 2.5rem;
+      line-height: 1;
+    }
+    .pricing-price span {
+      color: var(--clr-text-4);
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+    }
+    .pricing-points {
+      display: grid;
+      gap: 0.75rem;
+      color: var(--clr-text-3);
+      font-size: var(--text-sm);
+    }
+    .pricing-point {
+      padding: 0.8rem 0.95rem;
+      border-radius: var(--radius-md);
+      background: var(--clr-bg-soft);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+    }
+    .pricing-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .pricing-meta-card {
+      padding: 1rem 1.1rem;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid var(--clr-border);
+      color: var(--clr-text-3);
+      font-size: var(--text-sm);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <!-- ═══ UNIVERSAL NAV ═══ -->
+<nav class="site-nav" id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="PhysicX Home">
+      <img src="assets/icon/logo.png"       alt="PhysicX Logo"       style="height:34px;">
+      <span class="nav-logo-text">Physic<span>X</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="gallery/gallery.html">Gallery</a></li>
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="docs/documentation.html">Documentation</a></li>
+      <li><a href="about/about.html">About</a></li>
+      <li><a href="contacts/contact.html">Contact</a></li>
+      <li><a href="index.html#download-section" class="nav-download">Download</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+  <main class="pricing-shell">
+    <section class="container">
+      <div class="pricing-hero reveal">
+        <div>
+          <span class="badge badge-blue">Commercial licensing</span>
+          <h1>Choose the PhysicX plan that fits your workflow.</h1>
+        </div>
+        <p>
+          Trials remain server-tracked for 7 days. Paid access is activated only after Razorpay payment confirmation,
+          then the same account can use the desktop app immediately with the updated license.
+        </p>
+        <div class="pricing-account">
+          Signed-in account:
+          <strong id="pricing-email">Checking session...</strong>
+        </div>
+      </div>
+
+      <div id="pricing-message" class="status-message status-info show">
+        Choose a plan to create a secure Razorpay order. If you are not logged in, the page will send you to the PhysicX login screen first.
+      </div>
+
+      <div class="pricing-grid">
+        <article class="pricing-card reveal reveal-delay-1">
+          <div>
+            <span class="badge badge-green">Monthly</span>
+            <div class="pricing-price" style="margin-top:0.9rem;">
+              <strong>₹110</strong>
+              <span>every 30 days</span>
+            </div>
+          </div>
+          <div class="pricing-points">
+            <div class="pricing-point">One-time payment through Razorpay Checkout.</div>
+            <div class="pricing-point">Single-device desktop access with secure server validation.</div>
+            <div class="pricing-point">Best for short projects, course work, and monthly lab usage.</div>
+          </div>
+          <button class="btn btn-secondary" data-buy-plan="monthly" onclick="buyPlan('monthly')">
+            Buy Monthly - ₹110
+          </button>
+        </article>
+
+        <article class="pricing-card featured reveal reveal-delay-2">
+          <div>
+            <span class="badge badge-blue">Yearly</span>
+            <div class="pricing-price" style="margin-top:0.9rem;">
+              <strong>₹1200</strong>
+              <span>every 365 days</span>
+            </div>
+          </div>
+          <div class="pricing-points">
+            <div class="pricing-point">One-time payment through Razorpay Checkout.</div>
+            <div class="pricing-point">Single-device desktop access with update checks and heartbeat validation.</div>
+            <div class="pricing-point">Best for classrooms, semester use, and long-running research workflows.</div>
+          </div>
+          <button class="btn btn-primary" data-buy-plan="yearly" onclick="buyPlan('yearly')">
+            Buy Yearly - ₹1200
+          </button>
+        </article>
+      </div>
+
+      <div class="pricing-meta">
+        <div class="pricing-meta-card">
+          <strong>Trial</strong><br />
+          Every new verified account still receives a server-side 7-day trial before a paid upgrade is needed.
+        </div>
+        <div class="pricing-meta-card">
+          <strong>Renewals</strong><br />
+          Renewing a monthly or yearly plan extends the existing paid expiry instead of discarding remaining time.
+        </div>
+        <div class="pricing-meta-card">
+          <strong>Desktop unlock</strong><br />
+          Once the backend webhook confirms payment, your dashboard and desktop client both use the updated license immediately.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none; padding-top:0;">
+        <span>&copy; 2026 <span class="mono">PhysicX</span>. Secure payments for commercial licensing.</span>
+        <span><a href="dashboard.html" style="text-decoration:none;">Open dashboard</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="js/payment.js"></script>
+  <script src="js/nav.js"></script>
+</body>
+</html>

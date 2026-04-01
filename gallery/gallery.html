@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulation Gallery — PhysicX</title>
+  <link rel="icon" type="image/png" href="../assets/icon/logo.png">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- PhysicX Design System -->
+  <link rel="stylesheet" href="../shared.css" />
+
+  <!-- Gallery-specific styles (scoped, non-overriding) -->
+  <style>
+    /* =============================================
+       GALLERY PAGE — SCOPED ADDITIONS ONLY
+       All base tokens come from shared.css
+    ============================================= */
+
+    /* ── Filter Bar ─────────────────────────────── */
+    .gallery-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin: 2rem 0 2.5rem;
+    }
+
+    .gallery-filter-bar .btn {
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .gallery-filter-bar .btn.active {
+      background: var(--clr-accent);
+      color: #fff;
+      border-color: var(--clr-accent);
+      box-shadow: 0 2px 10px color-mix(in srgb, var(--clr-accent) 30%, transparent);
+    }
+
+    /* ── Preview Grid ────────────────────────────── */
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .preview-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .preview-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── Preview Card ────────────────────────────── */
+    .preview-card {
+      background: var(--clr-bg);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-lg, 12px);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .preview-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md, 0 8px 24px rgba(0,0,0,0.1));
+    }
+
+    /* Screenshot area */
+    .preview-card__thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--clr-bg-soft);
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .preview-card__thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .preview-card:hover .preview-card__thumb img {
+      transform: scale(1.04);
+    }
+
+    /* Zoom icon overlay */
+    .preview-card__zoom {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.22s ease, background 0.22s ease;
+      pointer-events: none;
+    }
+
+    .preview-card__thumb:hover .preview-card__zoom {
+      opacity: 1;
+      background: rgba(0,0,0,0.18);
+    }
+
+    .preview-card__zoom svg {
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+    }
+
+    /* Placeholder when no screenshot exists */
+    .preview-card__placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--clr-text-muted, #94a3b8);
+    }
+
+    .preview-card__placeholder svg {
+      width: 40px;
+      height: 40px;
+      opacity: 0.4;
+    }
+
+    .preview-card__placeholder span {
+      font-size: 0.75rem;
+      opacity: 0.6;
+    }
+
+    /* Card body */
+    .preview-card__body {
+      padding: 1.125rem 1.25rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+      flex: 1;
+    }
+
+    .preview-card__meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .preview-card__title {
+      font-size: 0.975rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--clr-text, #1e293b);
+      margin: 0;
+    }
+
+    .preview-card__desc {
+      font-size: 0.835rem;
+      line-height: 1.6;
+      color: var(--clr-text-muted, #64748b);
+      margin: 0;
+      flex: 1;
+    }
+
+      .preview-card__footer {
+      margin-top: 0.375rem;
+    }
+
+
+
+
+    /* ── Badge Variants ──────────────────────────── */
+    .badge-blue   { background: #dbeafe; color: #1d4ed8; }
+    .badge-green  { background: #dcfce7; color: #15803d; }
+    .badge-orange { background: #ffedd5; color: #c2410c; }
+    .badge-purple { background: #ede9fe; color: #6d28d9; }
+    .badge-teal   { background: #ccfbf1; color: #0f766e; }
+    .badge-rose   { background: #ffe4e6; color: #be123c; }
+    .badge-slate  { background: #f1f5f9; color: #475569; }
+
+    /* ── Empty State ─────────────────────────────── */
+    .gallery-empty {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .gallery-empty svg {
+      width: 56px;
+      height: 56px;
+      color: var(--clr-text-muted, #94a3b8);
+      opacity: 0.5;
+    }
+
+    .gallery-empty p {
+      font-size: 1rem;
+      color: var(--clr-text-muted, #64748b);
+      margin: 0;
+    }
+
+    /* ── Results Count ───────────────────────────── */
+    .gallery-count {
+      font-size: 0.85rem;
+      color: var(--clr-text-muted, #64748b);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── Modal ───────────────────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      backdrop-filter: blur(3px);
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-box {
+  background: var(--clr-bg);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+
+  max-width: 960px;   /* was 720px */
+  width: 92%;         /* prevents touching screen edges */
+
+  overflow: hidden;
+  transform: scale(0.94) translateY(12px);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+    .modal-overlay.open .modal-box {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-img-wrap {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--clr-bg-soft);
+      overflow: hidden;
+    }
+
+    .modal-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .modal-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--clr-text, #1e293b);
+      margin: 0;
+    }
+
+    .modal-close {
+      background: var(--clr-bg-soft);
+      border: 1px solid var(--clr-border);
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--clr-text-muted, #64748b);
+      flex-shrink: 0;
+      transition: background 0.18s, color 0.18s;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      background: var(--clr-border);
+      color: var(--clr-text, #1e293b);
+    }
+
+    .modal-desc {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--clr-text-muted, #64748b);
+      margin: 0 0 1.25rem;
+    }
+
+    /* ── Page section spacing ────────────────────── */
+    .gallery-section {
+      padding-bottom: 4rem;
+    }
+
+    /* ── Reveal animation (fallback if not in shared.css) ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* Search input */
+    .gallery-search-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .gallery-search {
+      width: 100%;
+      max-width: 420px;
+      padding: 0.55rem 1rem 0.55rem 2.6rem;
+      border: 1px solid var(--clr-border);
+      border-radius: 9999px;
+      background: var(--clr-bg);
+      font-family: inherit;
+      font-size: 0.875rem;
+      color: var(--clr-text, #1e293b);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .gallery-search:focus {
+      border-color: var(--clr-accent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--clr-accent) 15%, transparent);
+    }
+
+    .gallery-search-wrap-inner {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .gallery-search-icon {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 15px;
+      height: 15px;
+      color: var(--clr-text-muted, #94a3b8);
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══ UNIVERSAL NAV ═══ -->
+<nav class="site-nav" id="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo" aria-label="PhysicX Home">
+      <img src="../assets/icon/logo.png"       alt="PhysicX Logo"       style="height:34px;">
+      <span class="nav-logo-text">Physic<span>X</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../pricing.html">Pricing</a></li>
+      <li><a href="../gallery/gallery.html">Gallery</a></li>
+      <li><a href="../index.html#features">Features</a></li>
+      <li><a href="../docs/documentation.html">Documentation</a></li>
+      <li><a href="../about/about.html">About</a></li>
+      <li><a href="../contacts/contact.html">Contact</a></li>
+      <li><a href="../index.html#download-section" class="nav-download">Download</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+  <!-- ═══════════════════════════════════════════
+       UNIVERSAL NAVIGATION (controlled by nav.js)
+  ═══════════════════════════════════════════════ -->
+  <div id="nav-placeholder"></div>
+
+  <!-- ═══════════════════════════════════════════
+       PAGE HERO
+  ═══════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div style="text-align:center; max-width: 600px; margin: 0 auto;" class="reveal">
+        <span class="label">Simulation Gallery</span>
+        <h1 class="section-title" style="margin-top: 0.75rem;">Explore PhysicX Simulations</h1>
+        <p class="section-desc">
+          Browse interactive physics simulations built with the PhysicX platform.
+          Each simulation is crafted from Class XI topics to Research-level and runs entirely offline.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       GALLERY SECTION
+  ═══════════════════════════════════════════════ -->
+  <section class="section gallery-section" style="padding-top: 0;">
+    <div class="container">
+
+      <!-- Search -->
+      <div class="gallery-search-wrap reveal reveal-delay-1">
+        <div class="gallery-search-wrap-inner">
+          <svg class="gallery-search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input
+            type="text"
+            id="gallery-search"
+            class="gallery-search"
+            placeholder="Search simulations…"
+            aria-label="Search simulations"
+          />
+        </div>
+      </div>
+
+      <!-- Category Filter -->
+      <div class="gallery-filter-bar reveal reveal-delay-2" id="filter-bar" role="group" aria-label="Filter by category">
+        <button class="btn btn-secondary btn-sm active" data-cat="all">All</button>
+        <button class="btn btn-secondary btn-sm" data-cat="general">General</button>
+        <button class="btn btn-secondary btn-sm" data-cat="mechanics">Mechanics</button>
+        <button class="btn btn-secondary btn-sm" data-cat="thermodynamics">Thermodynamics</button>
+        <button class="btn btn-secondary btn-sm" data-cat="electromagnetism">Electromagnetism</button>
+        <button class="btn btn-secondary btn-sm" data-cat="optics">Optics</button>
+        <button class="btn btn-secondary btn-sm" data-cat="relativity">Relativity</button>
+        <button class="btn btn-secondary btn-sm" data-cat="mathematical-physics">Mathematical Physics</button>
+        <button class="btn btn-secondary btn-sm" data-cat="astrophysics">Astrophysics</button>
+        <button class="btn btn-secondary btn-sm" data-cat="atomic-physics">Atomic Physics</button>
+        <button class="btn btn-secondary btn-sm" data-cat="characterization-techniques">Characterization Techniques</button>
+        <button class="btn btn-secondary btn-sm" data-cat="condensed-matter">Condensed Matter</button>
+        <button class="btn btn-secondary btn-sm" data-cat="electronics">Electronics</button>
+        <button class="btn btn-secondary btn-sm" data-cat="fluid-mechanics">Fluid Mechanics</button>
+        <button class="btn btn-secondary btn-sm" data-cat="nuclear-physics">Nuclear Physics</button>
+        <button class="btn btn-secondary btn-sm" data-cat="quantum-mechanics">Quantum Mechanics</button>
+        <button class="btn btn-secondary btn-sm" data-cat="statistical-physics">Statistical Physics</button>
+        <button class="btn btn-secondary btn-sm" data-cat="waves-&-oscillations">Waves & Oscillations</button>
+        <button class="btn btn-secondary btn-sm" data-cat="tools">Tools</button>
+      </div>
+
+      <!-- Count -->
+      <p class="gallery-count" id="gallery-count"></p>
+
+      <!-- Grid -->
+      <div class="preview-grid" id="preview-grid">
+        <!-- Injected by gallery.js -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SCREENSHOT MODAL
+  ═══════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title-text">
+    <div class="modal-box" id="modal-box">
+      <div class="modal-img-wrap">
+        <img id="modal-img" src="" alt="" />
+      </div>
+      <div class="modal-body">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modal-title-text"></h2>
+          <button class="modal-close" id="modal-close" aria-label="Close modal">&#x2715;</button>
+         </div>
+         <p class="modal-desc" id="modal-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       UNIVERSAL FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer style="border-top: 1px solid var(--clr-border); padding: 2rem 0; margin-top: 2rem;">
+    <div class="container" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem;">
+      <p style="margin:0; font-size:0.85rem; color:var(--clr-text-muted, #64748b);">
+        &copy; 2026 PhysicX. All rights reserved.
+      </p>
+      <nav aria-label="Footer links" style="display:flex; gap:1.25rem;">
+        <a href="https://github.com" style="font-size:0.85rem; color:var(--clr-text-muted, #64748b); text-decoration:none;" target="_blank" rel="noopener">GitHub</a>
+        <a href="../docs/documentation.html"          style="font-size:0.85rem; color:var(--clr-text-muted, #64748b); text-decoration:none;">Documentation</a>
+        <a href="../contacts/contact.html"       style="font-size:0.85rem; color:var(--clr-text-muted, #64748b); text-decoration:none;">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  
+  <!-- Scripts -->
+  <script src="../js/nav.js"></script>
+  <script src="gallery.js"></script>
+
+</body>
+</html>

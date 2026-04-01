@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kesab333.github.io/PhysicX/sitemap.xml

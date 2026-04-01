@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verify OTP - PhysicX</title>
+  <meta name="description" content="Verify your PhysicX account using the one-time password sent to your email." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="assets/icon/logo.png" />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+  <!-- ═══ UNIVERSAL NAV ═══ -->
+<nav class="site-nav" id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="PhysicX Home">
+      <img src="assets/icon/logo.png"       alt="PhysicX Logo"       style="height:34px;">
+      <span class="nav-logo-text">Physic<span>X</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="gallery/gallery.html">Gallery</a></li>
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="docs/documentation.html">Documentation</a></li>
+      <li><a href="about/about.html">About</a></li>
+      <li><a href="contacts/contact.html">Contact</a></li>
+      <li><a href="index.html#download-section" class="nav-download">Download</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+  <main class="page-shell">
+    <section class="auth-hero">
+      <div class="container auth-shell">
+        <article class="auth-showcase reveal">
+          <span class="page-badge">Email validation</span>
+          <h1 class="page-title">Prove the inbox. <span class="accent">Activate the trial.</span></h1>
+          <p class="page-subtitle">
+            Your PhysicX trial is created only after this verification step. That keeps trials clean, user identities valid, and installer sign-in ready.
+          </p>
+
+          <div class="auth-list">
+            <div class="auth-list-item">
+              <div class="auth-list-icon">A</div>
+              <div class="auth-list-copy">
+                <strong>10-minute expiry</strong>
+                <span>Each OTP is short-lived and single-use for better account protection.</span>
+              </div>
+            </div>
+            <div class="auth-list-item">
+              <div class="auth-list-icon">B</div>
+              <div class="auth-list-copy">
+                <strong>Automatic trial creation</strong>
+                <span>Successful verification starts a 7-day trial license immediately on the backend.</span>
+              </div>
+            </div>
+            <div class="auth-list-item">
+              <div class="auth-list-icon">C</div>
+              <div class="auth-list-copy">
+                <strong>Rate-limited endpoint</strong>
+                <span>Verification calls are protected to reduce brute-force attempts.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="auth-card-panel reveal reveal-delay-1">
+          <div class="auth-card-head">
+            <span class="badge badge-blue">Verification</span>
+            <h2 class="auth-card-title">Enter the 6-digit OTP</h2>
+            <p class="auth-card-copy">
+              We sent a verification code to your email address. Use the latest code if you requested more than one.
+            </p>
+          </div>
+
+          <div class="email-pill" data-email-pill hidden>
+            Sending to <span data-pending-email></span>
+          </div>
+
+          <form id="verify-otp-form" class="auth-form" novalidate style="margin-top:1rem;">
+            <div class="field" data-email-fallback hidden>
+              <label for="verify-email">Email</label>
+              <input id="verify-email" data-prefill-email name="email" type="email" autocomplete="email" placeholder="researcher@domain.com" />
+            </div>
+
+            <div class="field">
+              <label for="verify-otp">Verification Code</label>
+              <input id="verify-otp" name="otpCode" class="otp-input" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="123456" required />
+            </div>
+
+            <div id="verify-otp-message" class="status-message" aria-live="polite"></div>
+
+            <button type="submit" class="btn btn-primary btn-lg auth-submit">Verify Account</button>
+          </form>
+
+          <div class="auth-inline">
+            <span>Need a different email?</span>
+            <a href="register.html">Create the account again</a>
+          </div>
+          <p class="auth-note">After verification, you will be redirected to login and can access your dashboard immediately.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none; padding-top:0;">
+        <span>&copy; 2026 <span class="mono">PhysicX</span>. Verified access only.</span>
+        <span><a href="login.html" style="text-decoration:none;">Already verified? Login</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/otp.js"></script>
+  <script src="js/nav.js"></script>
+</body>
+</html>
